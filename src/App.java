@@ -34,7 +34,8 @@ public class App {
     static double nanoToMilli = 1.0/1_000_000;
 
     /**
-     * Código de teste 1. Este método...
+     * Código de teste 1. Este método verifica quantos números ímpares há nos índices
+     * pares de um vetor dado.
      * @param vetor Vetor com dados para teste.
      * @return Quantidade de números ímpares nos índices pares.
      */
@@ -48,9 +49,11 @@ public class App {
     }
 
     /**
-     * Código de teste 2. Este método...
+     * Código de teste 2. Este método passa por um vetor e a cada iteração divide a variável
+     * de controle pela metade a cada iteração com o laço externo
+     * interação do tamanho dividido por 2
      * @param vetor Vetor com dados para teste.
-     * @return Uma resposta que significa 
+     * @return Uma resposta que significa o total de interações com um algoritmo.
      */
     static int codigo2(int[] vetor) {
         int contador = 0;
@@ -59,7 +62,6 @@ public class App {
                 operacoes++;
                 contador++;
             }
-
         }
         return contador;
     }
@@ -83,9 +85,10 @@ public class App {
     }
 
     /**
-     * Código de teste 4 (recursivo). Este método calcula Fibonacci
-     * @param n Ponto inicial do algoritmo
-     * @return Um inteiro que significa...
+     * Código de teste 4 (recursivo). Este método calcula o n-ésimo termo da sequência
+     * de Fibonacci recursivamente.
+     * @param n Ponto inicial do algoritmo. Posição do termo desejado na sequência.
+     * @return Um inteiro que significa o valor do n-ésimo termo da sequência de Fibonacci.
      */
     static int codigo4(int n) {
         operacoes++;
@@ -98,117 +101,61 @@ public class App {
     /**
      * Gerador de vetores aleatórios de tamanho pré-definido. 
      * @param tamanho Tamanho do vetor a ser criado.
-     * @return Vetor com dados aleatórios, com valores entre 1 e (tamanho/2), desordenado.
+     * @return Vetor com dados aleatórios, com valores entre 1 e limite, desordenado.
      */
     static int[] gerarVetor(int tamanho){
         int[] vetor = new int[tamanho];
         for (int i = 0; i < tamanho; i++) {
-            vetor[i] = aleatorio.nextInt(1, tamanho/2);
+            int limite = tamanho / 2;
+            if (limite <= 1) {
+                limite = 2;
+            }
+            vetor[i] = aleatorio.nextInt(1, limite);
         }
         return vetor;
         
     }
     public static void main(String[] args) {
-        for(int i = 0; i < 5; i++){
-            //Teste Grande
+        for(int i = 0; i < 5; i++) {
             operacoes = 0;
             long inicio = System.nanoTime();
             codigo1(gerarVetor(tamanhosTesteGrande[i]));
             long fim = System.nanoTime();
             double tempo = (fim - inicio) * nanoToMilli;
             System.out.println("Código 1 - Teste Grande");
-            System.out.println("Tempo: " + tempo + "\nOperações: "  + operacoes);
-
-            operacoes = 0;
-            inicio = System.nanoTime();
-            codigo2(gerarVetor(tamanhosTesteGrande[i]));
-            fim = System.nanoTime();
-            tempo = (fim - inicio) * nanoToMilli;
-            System.out.println("Código 2 - Teste Grande");
-            System.out.println("Tempo: " + tempo + "\nOperações: "  + operacoes);
-
-            operacoes = 0;
-            inicio = System.nanoTime();
-            codigo3(gerarVetor(tamanhosTesteGrande[i]));
-            fim = System.nanoTime();
-            tempo = (fim - inicio) * nanoToMilli;
-            System.out.println("Código 3 - Teste Grande");
-            System.out.println("Tempo: " + tempo + "\nOperações: "  + operacoes);
-
-            operacoes = 0;
-            inicio = System.nanoTime();
-            codigo4(tamanhosTesteGrande[i]);
-            fim = System.nanoTime();
-            tempo = (fim - inicio) * nanoToMilli;
-            System.out.println("Código 4 - Teste Grande");
-            System.out.println("Tempo: " + tempo + "\nOperações: "  + operacoes);
-
-            //Teste médio
-            operacoes = 0;
-            inicio = System.nanoTime();
-            codigo1(gerarVetor(tamanhosTesteMedio[i]));
-            fim = System.nanoTime();
-            tempo = (fim - inicio) * nanoToMilli;
-            System.out.println("Código 1 - Teste Medio");
-            System.out.println("Tempo: " + tempo + "\nOperações: "  + operacoes);
-
-            operacoes = 0;
-            inicio = System.nanoTime();
-            codigo2(gerarVetor(tamanhosTesteMedio[i]));
-            fim = System.nanoTime();
-            tempo = (fim - inicio) * nanoToMilli;
-            System.out.println("Código 2 - Teste Medio");
-            System.out.println("Tempo: " + tempo + "\nOperações: "  + operacoes);
-
-            operacoes = 0;
-            inicio = System.nanoTime();
-            codigo3(gerarVetor(tamanhosTesteMedio[i]));
-            fim = System.nanoTime();
-            tempo = (fim - inicio) * nanoToMilli;
-            System.out.println("Código 3 - Teste Medio");
-            System.out.println("Tempo: " + tempo + "\nOperações: "  + operacoes);
-
-            operacoes = 0;
-            inicio = System.nanoTime();
-            codigo4(tamanhosTesteMedio[i]);
-            fim = System.nanoTime();
-            tempo = (fim - inicio) * nanoToMilli;
-            System.out.println("Código 4 - Teste Medio");
-            System.out.println("Tempo: " + tempo + "\nOperações: "  + operacoes);
-
-            //Teste Pequeno
-            operacoes = 0;
-            inicio = System.nanoTime();
-            codigo1(gerarVetor(tamanhosTestePequeno[i]));
-            fim = System.nanoTime();
-            tempo = (fim - inicio) * nanoToMilli;
-            System.out.println("Código 1 - Teste Pequeno");
-            System.out.println("Tempo: " + tempo + "\nOperações: "  + operacoes);
-
-            operacoes = 0;
-            inicio = System.nanoTime();
-            codigo2(gerarVetor(tamanhosTestePequeno[i]));
-            fim = System.nanoTime();
-            tempo = (fim - inicio) * nanoToMilli;
-            System.out.println("Código 2 - Teste Pequeno");
-            System.out.println("Tempo: " + tempo + "\nOperações: "  + operacoes);
-
-            operacoes = 0;
-            inicio = System.nanoTime();
-            codigo3(gerarVetor(tamanhosTestePequeno[i]));
-            fim = System.nanoTime();
-            tempo = (fim - inicio) * nanoToMilli;
-            System.out.println("Código 3 - Teste Pequeno");
-            System.out.println("Tempo: " + tempo + "\nOperações: "  + operacoes);
-
-            operacoes = 0;
-            inicio = System.nanoTime();
-            codigo4(tamanhosTestePequeno[i]);
-            fim = System.nanoTime();
-            tempo = (fim - inicio) * nanoToMilli;
-            System.out.println("Código 4 - Teste Pequeno");
-            System.out.println("Tempo: " + tempo + "\nOperações: "  + operacoes);
+            System.out.println("Entrada: " + tamanhosTesteGrande[i] + "\nTempo: " + tempo + "\nOperações: " + operacoes);
         }
 
+        for(int i = 0; i < 5; i++) {
+            operacoes = 0;
+            long inicio = System.nanoTime();
+            codigo2(gerarVetor(tamanhosTesteGrande[i]));
+            long fim = System.nanoTime();
+            double tempo = (fim - inicio) * nanoToMilli;
+            System.out.println("Código 2 - Teste Grande");
+            System.out.println("Entrada: " + tamanhosTesteGrande[i] + "\nTempo: " + tempo + "\nOperações: " + operacoes);
+        }
+
+        for(int i = 0; i < 5; i++) {
+            operacoes = 0;
+            long inicio = System.nanoTime();
+            codigo3(gerarVetor(tamanhosTesteMedio[i]));
+            long fim = System.nanoTime();
+            double tempo = (fim - inicio) * nanoToMilli;
+            System.out.println("Código 3 - Teste Medio");
+            System.out.println("Entrada: " + tamanhosTesteMedio[i] + "\nTempo: " + tempo + "\nOperações: " + operacoes);
+        }
+
+        for(int i = 0; i < 5; i++) {
+            operacoes = 0;
+            long inicio = System.nanoTime();
+            codigo4(tamanhosTestePequeno[i]);
+            long fim = System.nanoTime();
+            double tempo = (fim - inicio) * nanoToMilli;
+            System.out.println("Código 4 - Teste Pequeno");
+            System.out.println("Entrada: " + tamanhosTestePequeno[i] + "\nTempo: " + tempo + "\nOperações: " + operacoes);
+        }
+
+        }
     }
-}
+
